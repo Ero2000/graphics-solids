@@ -20,7 +20,42 @@
   Color should be set differently for each polygon.
   ====================*/
 void scanline_convert( struct matrix *points, int i, screen s, zbuffer zb ) {
-
+  int p = i * 3;
+  int top, int bot, int mid;
+  if (points -> m[p][1] > points -> m[p+1][1] && points -> m[p][1] > points -> points -> m[p+2][1]){
+    top = p;
+    if (points->m[p+1][1] > points->m[p+2][1]){
+      bot = p+2;
+      mid = p+1;
+    }
+    else {
+      bot = p+1;
+      mid = p+2;
+    }
+  }
+  else if (points -> m[p+1][1] > points -> m[p][1] && points -> m[p+1][1] > points-> m[p+2][1]){
+    top = p+1;
+    if (points->m[p][1] > points->m[p+2][1]){
+      bot = p+2;
+      mid = p;
+    }
+    else {
+      bot = p;
+      mid = p+2;
+    }
+  }
+  else {
+    top = p+2;
+    if (points->m[p][1] > points->m[p+1][1]){
+      bot = p+1;
+      mid = p;
+    }
+    else {
+      bot = p;
+      mid = p+1;
+    }
+  }
+  
 }
 
 /*======== void add_polygon() ==========
