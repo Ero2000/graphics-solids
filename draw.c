@@ -56,7 +56,6 @@ void scanline_convert( struct matrix *points, int i, screen s, zbuffer zb ) {
     }
   }
   double y, x0, x1, d1, d2;
-  double m;
   x0 = points->m[bot][0];
   d1 = (points->m[top][0] - points->m[bot][0])/(points->m[top][1] - points->m[bot][1]);
   d2 = (points->m[mid][0] - points->m[bot][0])/(points->m[mid][1] - points->m[bot][1]);
@@ -66,7 +65,7 @@ void scanline_convert( struct matrix *points, int i, screen s, zbuffer zb ) {
   c.blue = i%255;
   c.green = (255 + i)%255;
   
-  for (y = points->m[bot][1]; y <= point->m[top][1]; y++){
+  for (y = points->m[bot][1]; y <= points->m[top][1]; y++){
     draw_line(x0,y,0,x1,y,0,s,zb,c);
     if (y == points->m[mid][1]){ d2 = (points->m[top][0] - points->m[mid][0])/(points->m[top][1] - points->m[bot][1]); }
     x0 += d1;
