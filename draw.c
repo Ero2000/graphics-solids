@@ -20,7 +20,7 @@
   Color should be set differently for each polygon.
   ====================*/
 void scanline_convert( struct matrix *points, int i, screen s, zbuffer zb ) {
-  double p = i * 3;
+  int p = i * 3;
   double top, bot, mid;
   if (points -> m[p][1] > points -> m[p+1][1] && points -> m[p][1] > points -> points -> m[p+2][1]){
     top = p;
