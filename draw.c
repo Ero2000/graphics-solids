@@ -632,7 +632,7 @@ void draw_line(int x0, int y0, double z0,
   if (dist != 0) dz = (z1 - z0)/(dist);
   else dz = 0;
   while ( loop_start < loop_end ) {
-
+    z+=dz;
     plot( s, zb, c, x, y, z);
     if ( (wide && ((A > 0 && d > 0) ||
                    (A < 0 && d < 0)))
@@ -648,7 +648,7 @@ void draw_line(int x0, int y0, double z0,
       y+= dy_east;
       d+= d_east;
     }
-    z+=dz;
+    
     loop_start++;
   } //end drawing loop
   plot( s, zb, c, x1, y1, z1 );
