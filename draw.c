@@ -627,7 +627,7 @@ void draw_line(int x0, int y0, double z0,
       loop_start = y1;
       loop_end = y;
     }
-  }
+  
   dist = abs(loop_end - loop_start);
   if (dist != 0) dz = (z1 - z0)/(dist);
   else dz = 0;
