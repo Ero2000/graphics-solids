@@ -79,7 +79,7 @@ void scanline_convert( struct matrix *points, int i, screen s, zbuffer zb ) {
   d1 = (points->m[0][top] - points->m[0][mid])/(points->m[1][top] - points->m[1][mid]);
   d3 = (points->m[2][top] - points->m[2][mid])/(points->m[1][top] - points->m[1][mid]);
   x1 = points->m[0][mid];
-  z1 = points->m[0][mid];
+  z1 = points->m[2][mid];
   for (b = points->m[1][mid]; b < points->m[1][top]; b++){
     draw_line(x0,b,z0,x1,b,z1,s,zb,c);
     x0+=d0;
@@ -629,10 +629,10 @@ void draw_line(int x0, int y0, double z0,
     }
   }
   dist = abs(loop_end - loop_start);
-  if (dist != 0) dz = (z1 - z0)/(dist);
-  else dz = 0;
+  dz = (z1 - z0)/(dist);
+  printf("%f   %f   %f   %f   %f   %f   %f\n", z0, z1, z, loop_end, loop_start, dist, dz );
   while ( loop_start < loop_end ) {
-    z+=dz;
+    
     plot( s, zb, c, x, y, z);
     if ( (wide && ((A > 0 && d > 0) ||
                    (A < 0 && d < 0)))
@@ -648,7 +648,7 @@ void draw_line(int x0, int y0, double z0,
       y+= dy_east;
       d+= d_east;
     }
-    
+    z += dz;
     loop_start++;
   } //end drawing loop
   plot( s, zb, c, x1, y1, z1 );
